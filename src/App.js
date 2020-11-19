@@ -1,13 +1,18 @@
-import Signup from 'components/Signup';
+import Signup from 'screens/Signup';
 import { AuthProvider } from 'context/AuthContext';
 import { Container } from 'react-bootstrap';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 function App() {
   return (
-    <AuthProvider>
-      <Container className="d-flex align-items-center" style={{ minHeight: '100vh' }}>
-        <Signup />
-      </Container>
-    </AuthProvider>
+    <Container className="d-flex align-items-center" style={{ minHeight: '100vh' }}>
+      <Router>
+        <AuthProvider>
+          <Switch>
+            <Route path="/signup" component={Signup} />
+          </Switch>
+        </AuthProvider>
+      </Router>
+    </Container>
   );
 }
 

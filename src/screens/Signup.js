@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import FormContainer from './FormContainer';
+import FormContainer from 'components/FormContainer';
 import { Card, Form, Button, Alert } from 'react-bootstrap';
 import { useAuth } from 'context/AuthContext';
 
