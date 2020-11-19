@@ -8,6 +8,9 @@ const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = React.useState();
   const [loading, setLoading] = React.useState(true);
 
+  const login = (email, password) => {
+    return auth.signInWithEmailAndPassword(email, password);
+  };
   const signup = (email, password) => {
     return auth.createUserWithEmailAndPassword(email, password);
   };
@@ -23,6 +26,7 @@ const AuthProvider = ({ children }) => {
   const value = {
     currentUser,
     signup,
+    login,
   };
 
   return (
