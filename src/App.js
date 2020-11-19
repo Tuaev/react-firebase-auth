@@ -1,6 +1,7 @@
 import { AuthProvider } from 'context/AuthContext';
 import { Container } from 'react-bootstrap';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import AuthGuard from 'components/AuthGuard';
 import Signup from 'screens/Signup';
 import Dashboard from 'screens/Dashboard';
 import Login from 'screens/Login';
@@ -11,7 +12,7 @@ function App() {
       <Router>
         <AuthProvider>
           <Switch>
-            <Route exact path="/" component={Dashboard} />
+            <AuthGuard exact path="/" component={Dashboard} />
             <Route path="/signup" component={Signup} />
             <Route path="/login" component={Login} />
           </Switch>
