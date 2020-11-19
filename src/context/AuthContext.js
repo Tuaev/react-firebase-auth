@@ -8,11 +8,14 @@ const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = React.useState();
   const [loading, setLoading] = React.useState(true);
 
+  const signup = (email, password) => {
+    return auth.createUserWithEmailAndPassword(email, password);
+  };
   const login = (email, password) => {
     return auth.signInWithEmailAndPassword(email, password);
   };
-  const signup = (email, password) => {
-    return auth.createUserWithEmailAndPassword(email, password);
+  const logout = (email, password) => {
+    return auth.signOut();
   };
 
   React.useEffect(() => {
@@ -27,6 +30,7 @@ const AuthProvider = ({ children }) => {
     currentUser,
     signup,
     login,
+    logout,
   };
 
   return (

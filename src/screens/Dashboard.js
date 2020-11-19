@@ -2,12 +2,22 @@ import * as React from 'react';
 import { useAuth } from 'context/AuthContext';
 import { Alert, Button, Card, ListGroup, Row } from 'react-bootstrap';
 import FormContainer from 'components/FormContainer';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 function Dashboard() {
-  const { currentUser } = useAuth();
+  const { currentUser, logout } = useAuth();
   const [error, setError] = React.useState('');
-  function handleLogout() {}
+  const history = useHistory();
+
+  async function handleLogout() {
+    setError('');
+    try {
+      await logout();
+      history.push('/login');
+    } catch (error) {
+      setError('Failed to log out');
+    }
+  }
 
   return (
     <FormContainer>
