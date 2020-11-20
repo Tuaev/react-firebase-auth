@@ -4,11 +4,11 @@ import FormContainer from 'components/FormContainer';
 import { Card, Form, Button, Alert } from 'react-bootstrap';
 import { useAuth } from 'context/AuthContext';
 
-const Login = () => {
-  const { login } = useAuth();
+function ForgotPassword() {
+  const { resetPassword } = useAuth();
   const emailRef = React.useRef();
-  const passwordRef = React.useRef();
   const [error, setError] = React.useState('');
+  const [message, setMessage] = React.useState('');
   const [loading, setLoading] = React.useState(false);
   const history = useHistory();
 
@@ -17,11 +17,12 @@ const Login = () => {
 
     try {
       setError('');
+      setMessage('');
       setLoading(true);
-      await login(emailRef.current.value, passwordRef.current.value);
-      history.push('/');
+      await resetPassword(emailRef.current.value);
+      setMessage('Check your inbox for further instructions');
     } catch (error) {
-      setError('Failed to sign-in');
+      setError('Failed to reset password');
     }
     setLoading(false);
   }
@@ -30,24 +31,21 @@ const Login = () => {
     <FormContainer>
       <Card>
         <Card.Body>
-          <h2 className="text-center mb-4">Sign-in</h2>
+          <h2 className="text-center mb-4">Forgot Password?</h2>
+          {message && <Alert variant="success">{message}</Alert>}
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>
               <Form.Control type="email" ref={emailRef} required />
             </Form.Group>
-            <Form.Group id="password">
-              <Form.Label>Password</Form.Label>
-              <Form.Control type="password" ref={passwordRef} required />
-            </Form.Group>
             <Button disabled={loading} className="btn-block" type="submit">
-              Sign-in
+              Reset Password
             </Button>
           </Form>
           <Card.Text className="mt-2">
-            <Link to="/forgot-password">
-              <small>Forgot Password?</small>
+            <Link to="/login">
+              <small>Login</small>
             </Link>
           </Card.Text>
         </Card.Body>
@@ -57,6 +55,6 @@ const Login = () => {
       </div>
     </FormContainer>
   );
-};
+}
 
-export default Login;
+export default ForgotPassword;

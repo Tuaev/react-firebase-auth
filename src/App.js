@@ -5,6 +5,8 @@ import AuthGuard from 'components/AuthGuard';
 import Signup from 'screens/Signup';
 import Dashboard from 'screens/Dashboard';
 import Login from 'screens/Login';
+import ForgotPassword from 'screens/ForgotPassword';
+import UpdateProfile from 'screens/UpdateProfile';
 
 function App() {
   return (
@@ -13,8 +15,10 @@ function App() {
         <AuthProvider>
           <Switch>
             <AuthGuard exact path="/" component={Dashboard} />
+            <AuthGuard exact path="/update-profile" component={UpdateProfile} />
             <Route path="/signup" component={Signup} />
             <Route path="/login" component={Login} />
+            <Route path="/forgot-password" component={ForgotPassword} />
           </Switch>
         </AuthProvider>
       </Router>

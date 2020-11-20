@@ -18,6 +18,10 @@ const AuthProvider = ({ children }) => {
     return auth.signOut();
   };
 
+  const resetPassword = (email) => {
+    return auth.sendPasswordResetEmail(email);
+  };
+
   React.useEffect(() => {
     // unsubscribes us from the auth listener when we unmount
     return auth.onAuthStateChanged((user) => {
@@ -31,6 +35,7 @@ const AuthProvider = ({ children }) => {
     signup,
     login,
     logout,
+    resetPassword,
   };
 
   return (
