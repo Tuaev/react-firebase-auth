@@ -8,19 +8,26 @@ const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = React.useState();
   const [loading, setLoading] = React.useState(true);
 
-  const signup = (email, password) => {
+  function signup(email, password) {
     return auth.createUserWithEmailAndPassword(email, password);
-  };
-  const login = (email, password) => {
+  }
+  function login(email, password) {
     return auth.signInWithEmailAndPassword(email, password);
-  };
-  const logout = (email, password) => {
-    return auth.signOut();
-  };
+  }
 
-  const resetPassword = (email) => {
+  function updateEmail(email) {
+    return currentUser.updateEmail(email);
+  }
+  function updatePassword(password) {
+    return currentUser.updatePassword(password);
+  }
+
+  function logout() {
+    return auth.signOut();
+  }
+  function resetPassword(email) {
     return auth.sendPasswordResetEmail(email);
-  };
+  }
 
   React.useEffect(() => {
     // unsubscribes us from the auth listener when we unmount
@@ -36,6 +43,8 @@ const AuthProvider = ({ children }) => {
     login,
     logout,
     resetPassword,
+    updateEmail,
+    updatePassword,
   };
 
   return (

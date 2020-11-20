@@ -10,7 +10,6 @@ function ForgotPassword() {
   const [error, setError] = React.useState('');
   const [message, setMessage] = React.useState('');
   const [loading, setLoading] = React.useState(false);
-  const history = useHistory();
 
   async function handleSubmit(e) {
     e.preventDefault();

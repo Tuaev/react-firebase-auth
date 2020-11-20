@@ -15,7 +15,7 @@ function App() {
         <AuthProvider>
           <Switch>
             <AuthGuard exact path="/" component={Dashboard} />
-            <AuthGuard exact path="/update-profile" component={UpdateProfile} />
+            <AuthGuard path="/update-profile" component={UpdateProfile} />
             <Route path="/signup" component={Signup} />
             <Route path="/login" component={Login} />
             <Route path="/forgot-password" component={ForgotPassword} />
